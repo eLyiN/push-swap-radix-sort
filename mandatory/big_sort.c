@@ -6,110 +6,79 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 09:11:02 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/28 11:50:04 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/07/28 14:08:08 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	chunk_phase(t_program *s100, t_global *g, int *index)
-{
-	if (g->stack_a.size > 2)
-	{
-		if (s100->hold_first < s100->hold_second
-			|| s100->hold_first == s100->hold_second)
-		{
-			while (s100->hold_first != 0)
-			{
-				swap_ra(&g->stack_a);
-				index_ra(index, &g->stack_a);
-				s100->hold_first--;
-			}
-		}
-		else
-		{
-			while (s100->hold_second != 0)
-			{
-				swap_rra(&g->stack_a);
-				index_ra(index, &g->stack_a);
-				s100->hold_second--;
-			}
-		}
-	}
-	chk_b_nd_push(g, index);
-	s100->chnk_count++;
-}
-
-int	push_b_phase(t_program *s100, t_global *g)
-{
-	if (s100->hold_first < s100->hold_second
-		|| s100->hold_first == s100->hold_second)
-	{
-		while (s100->hold_first != 0)
-		{
-			swap_rb(&g->stack_b);
-			s100->hold_first--;
-		}
-	}
-	else
-	{
-		while (s100->hold_second != 0)
-		{
-			swap_rrb(&g->stack_b);
-			s100->hold_second--;
-		}
-	}
-	swap_pa(&g->stack_a, &g->stack_b);
-	return (0);
-}
-
 int	start_sort_big(t_global *global)
 {
-	t_program	s100;
-	int			*index;
+	t_global	index;
 
-	start_program(&s100, global);
-	s100.low_nb = find_smallest_nb(&index);
-	s100.high_nb = find_highest_nb(&index);
-	index = malloc(sizeof(int) * global->stack_a.size);
-	if (!index)
+	index.stack_a.array = malloc(sizeof(int) * global->stack_a.size);
+	if (!index.stack_a.array)
 		return (write(STDERR_FILENO, "Error\n", 6));
-	simple_indexation(&s100, &global->stack_a, index);
-	radix_and_push(&s100, &global, index);
+	simple_indexation(&global->stack_a, index);
+	radix_and_push(global, index);
 	return (0);
 }
 
-void	radix_and_push(t_program *s100, t_global *g, int *index)
+void	radix_and_push(t_global *g, int *index)
 {
 	int	max_bits;
 	int	i;
 	int	j;
+	int	k;
+	int	nb;
 
 	max_bits = 0;
-	while ((s100->high_nb >> max_bits) != 0)
+	while (((g->stack_a.max_size - 1) >> max_bits) != 0)
 		max_bits++;
+	printf("MAXBITS:%d\n", max_bits);
 	i = 0;
 	while (i < max_bits)
 	{
 		j = 0;
-		while (j < g->stack_a.size - 1)
+		while (j < (int)g->stack_a.size)
 		{
-			if ()
-				j++;
+			nb = index[0];
+			printf("Index[0] en Radix_sort:%d\n", index[0]);
+			if (((nb >> i) & 1) == 1)
+			{
+				index_ra(index, &g->stack_a);
+				swap_ra(&g->stack_a);
+			}
+			else
+			{
+				index_clear(index, &g->stack_a);
+				swap_pb(&g->stack_b, &g->stack_a);
+			}
+			j++;
 		}
+		k = -1;
+		while (++k < (int)g->stack_b.size)
+			printf("STACK_B[%d]: %d\n", k, g->stack_b.array[k]);
+		k = -1;
+		while (g->stack_b.size > 0)
+			swap_pa(&g->stack_a, &g->stack_b);
+		while (++k < (int)g->stack_a.size)
+			printf("STACK_A[%d]: %d\n", k, g->stack_a.array[k]);
 		i++;
 	}
 }
 
-void	simple_indexation(t_program *s100, t_stack *stack_a, int *index)
+void	simple_indexation(t_stack *stack_a, int *index)
 {
 	size_t	i;
 	size_t	j;
 	int		lw_nb;
+	int		high_nb;
 
-	lw_nb = s100->low_nb;
+	lw_nb = find_smallest_nb(stack_a);
+	high_nb = find_highest_nb(stack_a);
 	j = 0;
-	while (lw_nb != s100->high_nb + 1)
+	while (lw_nb != high_nb + 1)
 	{
 		i = 0;
 		while (i < stack_a->size)
@@ -123,34 +92,13 @@ void	simple_indexation(t_program *s100, t_stack *stack_a, int *index)
 		}
 		lw_nb++;
 	}
+	j = -1;
+	while (++j < stack_a->size)
+		printf("INDEX[%ld]: %d\n", j, index[j]);
 }
 
-void	get_holds(t_program *s100, t_stack *stack, int *index)
-{
-	size_t	i;
-	size_t	mid;
-	int		status;
-
-	mid = stack->size / 2;
-	i = 0;
-	while (i < mid && status == 0)
-	{
-		if (index[i] < (int)s100->chnk_max_stack)
-		{
-			s100->hold_first = i;
-			status = 1;
-		}
-		i++;
-	}
-	status = 0;
-	i = stack->size;
-	while (i > mid && status == 0)
-	{
-		if (index[i] < (int)s100->chnk_max_stack)
-		{
-			s100->hold_second = i - mid;
-			status = 1;
-		}
-		i--;
-	}
-}
+//Hay que mover varias veces los numeros de un lado a otro por lo cual
+//la indexacion no se puede completar teniendo 1 stack, vamos a usar
+//un t_global para crear el index y almacenarlo ahi, luego recreamos
+//las funciones para index y hacemos los mismos movimientos en el original
+//y en el index. FIN.

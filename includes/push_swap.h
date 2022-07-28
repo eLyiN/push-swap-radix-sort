@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:32:06 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/28 11:50:19 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/07/28 13:14:38 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,7 @@ void		new_logic(t_global *g);
 
 /*big_sort.c*/
 int			start_sort_big(t_global *global);
-int			start_program(t_program *s100, t_global *global);
-void		simple_indexation(t_program *s100, t_stack *stack_a, int *index);
-void		chunk_phase(t_program *s100, t_global *g, int *index);
-void		get_holds(t_program *s100, t_stack *stack, int *index);
-void		get_next_chunk(t_program *s100, t_stack *stack_a);
+void		simple_indexation(t_stack *stack_a, int *index);
+void		radix_and_push(t_global *g, int *index);
 
 #endif
