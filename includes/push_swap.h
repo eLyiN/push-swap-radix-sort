@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:32:06 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/28 13:14:38 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/07/28 23:50:27 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ void		swap_ra(t_stack *stack_a);
 void		swap_rb(t_stack *stack_b);
 void		swap_rra(t_stack *stack_a);
 void		swap_rrb(t_stack *stack_b);
-void		index_clear(int *index, t_stack *stack_a);
-void		index_ra(int *index, t_stack *stack_a);
-void		index_rra(int *index, t_stack *stack_a);
+void		index_pa(t_global *index);
+void		index_pb(t_global *index);
+void		index_ra(t_stack *index_a);
+void		index_rra(t_stack *index_a);
 
 /*small_sort.c*/
 
@@ -74,7 +75,7 @@ void		new_logic(t_global *g);
 
 /*big_sort.c*/
 int			start_sort_big(t_global *global);
-void		simple_indexation(t_stack *stack_a, int *index);
-void		radix_and_push(t_global *g, int *index);
+void		simple_indexation(t_stack *stack_a, t_global *index);
+void		radix_and_push(t_global *g, t_global *index);
 
 #endif
