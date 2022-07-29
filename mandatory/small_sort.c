@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 17:10:23 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/26 10:49:30 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/07/29 10:29:00 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,13 @@ int	find_first_pos(t_stack *stack_a)
 	return (0);
 }
 
-int	start_sort_small(t_stack *stack_a, t_stack *stack_b)
+void	start_sort_small(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a->size == 2)
 	{
 		if (stack_a->array[0] > stack_a->array[1])
 			swap_sa(stack_a);
-		return (0);
+		return ;
 	}
 	while (stack_a->size > 3)
 	{
@@ -115,9 +115,9 @@ int	start_sort_small(t_stack *stack_a, t_stack *stack_b)
 		else if (stack_a->size > 3)
 			swap_ra(stack_a);
 	}
-	if (!check_sorted_nb(stack_a))
+	if (check_sorted_nb(stack_a))
 		sort_three_nb(stack_a);
 	while (stack_b->size > 0)
 		perform_rest_sort_a(stack_a, stack_b);
-	return (0);
+	return ;
 }

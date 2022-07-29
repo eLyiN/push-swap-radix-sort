@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 10:21:35 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/29 17:26:05 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/07/29 17:26:23 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/checker.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+int	ft_strcmp(const char *str1, const char *str2)
 {
 	size_t			i;
 	unsigned char	*s1;
@@ -21,9 +21,7 @@ int	ft_strncmp(const char *str1, const char *str2, size_t n)
 	s1 = (unsigned char *)str1;
 	s2 = (unsigned char *)str2;
 	i = 0;
-	if (n == 0)
-		return (0);
-	while (s1[i] == s2[i] && (i < (n - 1)) && s1[i] && s2[i])
+	while (s1[i] == s2[i] && s1[i] && s2[i])
 	{
 		i++;
 	}

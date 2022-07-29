@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 09:11:02 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/29 00:24:06 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/07/29 10:22:01 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,15 @@ int	start_sort_big(t_global *global)
 		return (write(STDERR_FILENO, "Error\n", 6));
 	index.stack_b.array = malloc(sizeof(int) * global->stack_a.size);
 	if (!index.stack_b.array)
-		return (write(STDERR_FILENO, "Error\n", 6));
+	{
+		free(index.stack_a.array);
+		write(STDERR_FILENO, "Error\n", 6);
+		return (1);
+	}
 	simple_indexation(&global->stack_a, &index);
 	radix_and_push(global, &index);
+	free(index.stack_a.array);
+	free(index.stack_b.array);
 	return (0);
 }
 
@@ -36,7 +42,6 @@ void	radix_and_push(t_global *g, t_global *index)
 	int	max_bits;
 	int	i;
 	int	j;
-	int	k;
 	int	nb;
 	int	size;
 
@@ -44,39 +49,20 @@ void	radix_and_push(t_global *g, t_global *index)
 	max_bits = 0;
 	while (((index->stack_a.size - 1) >> max_bits) != 0)
 		max_bits++;
-	printf("MAXBITS:%d\n", max_bits);
-	i = 0;
-	while (i < max_bits)
+	i = -1;
+	while (++i < max_bits)
 	{
-		j = 0;
-		while (j < size)
+		j = -1;
+		while (++j < size)
 		{
 			nb = index->stack_a.array[0];
-			printf("Index[0] en Radix_sort:%d\n", index->stack_a.array[0]);
 			if (((nb >> i) & 1) == 1)
-			{
-				index_ra(&index->stack_a);
-				swap_ra(&g->stack_a);
-			}
+				both_ra(g, index);
 			else
-			{
-				index_pb(index);
-				swap_pb(&g->stack_b, &g->stack_a);
-			}
-			j++;
+				both_pb(g, index);
 		}
-		k = -1;
-		while (++k < (int)g->stack_b.size)
-			printf("STACK_B[%d]: %d\n", k, g->stack_b.array[k]);
-		k = -1;
 		while (index->stack_b.size > 0)
-		{
-			index_pa(index);
-			swap_pa(&g->stack_a, &g->stack_b);
-		}
-		while (++k < (int)g->stack_a.size)
-			printf("STACK_A[%d]: %d\n", k, g->stack_a.array[k]);
-		i++;
+			both_pa(g, index);
 	}
 }
 
@@ -105,13 +91,4 @@ void	simple_indexation(t_stack *stack_a, t_global *index)
 		}
 		lw_nb++;
 	}
-	j = -1;
-	while (++j < stack_a->size)
-		printf("INDEX[%ld]: %d\n", j, index->stack_a.array[j]);
 }
-
-//Hay que mover varias veces los numeros de un lado a otro por lo cual
-//la indexacion no se puede completar teniendo 1 stack, vamos a usar
-//un t_global para crear el index y almacenarlo ahi, luego recreamos
-//las funciones para index y hacemos los mismos movimientos en el original
-//y en el index. FIN.

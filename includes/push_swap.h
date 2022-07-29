@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:32:06 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/28 23:50:27 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/07/29 16:47:34 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,16 @@ void		index_pa(t_global *index);
 void		index_pb(t_global *index);
 void		index_ra(t_stack *index_a);
 void		index_rra(t_stack *index_a);
+void		swap_rrr(t_global *g);
+void		swap_rr(t_global *g);
+void		swap_ss(t_global *g);
+void		both_ra(t_global *g, t_global *i);
+void		both_pb(t_global *g, t_global *i);
+void		both_pa(t_global *g, t_global *i);
 
 /*small_sort.c*/
 
-int			start_sort_small(t_stack *stack_a, t_stack *stack_b);
+void		start_sort_small(t_stack *stack_a, t_stack *stack_b);
 int			check_sorted_nb(t_stack *stack_a);
 void		perform_rest_sort_a(t_stack *stack_a, t_stack *stack_b);
 int			find_last_pos(t_stack *stack_a);
@@ -66,12 +72,8 @@ int			sort_three_nb(t_stack *stack_a);
 
 /*calculations.c*/
 
-int			chk_b_nd_push(t_global *g, int *index);
-void		place_bottom(t_stack *stack);
-void		place_top(t_program *s100, t_stack *stack);
 int			find_smallest_nb(t_stack *stack);
 int			find_highest_nb(t_stack *stack);
-void		new_logic(t_global *g);
 
 /*big_sort.c*/
 int			start_sort_big(t_global *global);

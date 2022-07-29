@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/24 10:21:35 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/29 17:26:05 by aarribas         ###   ########.fr       */
+/*   Created: 2022/04/25 10:48:54 by aarribas          #+#    #+#             */
+/*   Updated: 2022/07/29 23:49:48 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/checker.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+void	*ft_calloc(size_t nitems, size_t size)
 {
-	size_t			i;
-	unsigned char	*s1;
-	unsigned char	*s2;
+	void	*ptr;
 
-	s1 = (unsigned char *)str1;
-	s2 = (unsigned char *)str2;
-	i = 0;
-	if (n == 0)
-		return (0);
-	while (s1[i] == s2[i] && (i < (n - 1)) && s1[i] && s2[i])
+	if (nitems == __SIZE_MAX__ && size > 1)
+		return (NULL);
+	if (size == __SIZE_MAX__ && nitems > 1)
+		return (NULL);
+	ptr = malloc(nitems * size);
+	if (ptr == NULL)
 	{
-		i++;
+		return (ptr);
 	}
-	return (s1[i] - s2[i]);
+	ft_bzero(ptr, nitems * size);
+	return (ptr);
 }

@@ -6,16 +6,13 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 16:34:32 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/20 13:50:45 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/07/29 09:55:22 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# include <stddef.h>
-# include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
 # include <unistd.h>
 
 void				*ft_calloc(size_t nitems, size_t size);
