@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 09:03:24 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/29 09:14:59 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/07/30 09:30:07 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ void	swap_rrr(t_global *g)
 {
 	swap_rra(&g->stack_a);
 	swap_rrb(&g->stack_b);
+	write(STDOUT_FILENO, "rrr\n", 3);
 }
 
 void	swap_ss(t_global *g)
 {
 	swap_sa(&g->stack_a);
 	swap_sb(&g->stack_b);
+	write(STDOUT_FILENO, "ss\n", 3);
 }
 
 void	both_ra(t_global *g, t_global *i)

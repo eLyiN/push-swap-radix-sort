@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 22:52:14 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/29 22:56:22 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/07/30 09:32:14 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,17 @@ int	check_double(t_stack *stack_a, int nb)
 
 void	freedom(t_global *main)
 {
+	int	i;
+
 	free(main->stack_a.array);
 	free(main->stack_b.array);
-	free(main->checker.inst);
+	i = 0;
+	while (i < main->checker.inst_size)
+	{
+		free(main->checker.inst[i]);
+		i++;
+	}
+	return ;
 }
 
 int	count_instr(const char *str, char c)

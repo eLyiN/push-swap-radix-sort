@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 10:34:15 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/29 16:47:18 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/07/30 09:29:49 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,5 @@ void	swap_rr(t_global *g)
 {
 	swap_ra(&g->stack_a);
 	swap_rb(&g->stack_b);
+	write(STDOUT_FILENO, "rr\n", 3);
 }

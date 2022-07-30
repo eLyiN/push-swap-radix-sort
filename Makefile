@@ -6,12 +6,13 @@
 #    By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 15:57:51 by aarribas          #+#    #+#              #
-#    Updated: 2022/07/30 00:29:55 by aarribas         ###   ########.fr        #
+#    Updated: 2022/07/30 10:18:10 by aarribas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #main
-NAME			=	push_swap
+PUSH_SWAP		=	push_swap
+NAME			=	$(PUSH_SWAP) $(CHECKER)
 CC				= 	gcc $(FLAGS)
 FLAGS			=	-Wall -Werror -Wextra -g
 RM				=	rm -rf
@@ -42,7 +43,7 @@ all	:	$(NAME) $(CHECKER)
 $(NAME):			$(OBJ_M) $(LIBFT) $(INCLUDES) Makefile
 					$(CC) $(OBJ_M) $(LIBFT) -o $(NAME)
 
-%.o: %.c $(INCLUDES) $(LIBFT)
+%.o: %.c $(INCLUDES) $(LIBFT) $(CHECKER)
 		$(CC) -c $< -o $@
 
 $(LIBFT):	libft/Makefile

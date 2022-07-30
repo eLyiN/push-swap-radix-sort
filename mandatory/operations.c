@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:54:03 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/22 19:23:21 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/07/30 09:29:33 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	swap_sa(t_stack *stack_a)
 		stack_a->array[0] = stack_a->array[1];
 		stack_a->array[1] = tmp;
 	}
-	ft_putstr_fd("sa\n", STDOUT_FILENO);
+	write(STDOUT_FILENO, "sa\n", 3);
 }
 
 void	swap_sb(t_stack *stack_b)
@@ -35,7 +35,7 @@ void	swap_sb(t_stack *stack_b)
 		stack_b->array[0] = stack_b->array[1];
 		stack_b->array[1] = tmp;
 	}
-	ft_putstr_fd("sb\n", STDOUT_FILENO);
+	write(STDOUT_FILENO, "sb\n", 3);
 }
 
 void	swap_pa(t_stack *stack_a, t_stack *stack_b)
@@ -60,7 +60,7 @@ void	swap_pa(t_stack *stack_a, t_stack *stack_b)
 			i++;
 		}
 	}
-	ft_putstr_fd("pa\n", STDOUT_FILENO);
+	write(STDOUT_FILENO, "pa\n", 3);
 }
 
 void	swap_pb(t_stack *stack_b, t_stack *stack_a)
@@ -85,5 +85,5 @@ void	swap_pb(t_stack *stack_b, t_stack *stack_a)
 			i++;
 		}
 	}
-	ft_putstr_fd("pb\n", STDOUT_FILENO);
+	write(STDOUT_FILENO, "pb\n", 3);
 }
