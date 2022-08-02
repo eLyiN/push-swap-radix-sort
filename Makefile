@@ -6,13 +6,12 @@
 #    By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 15:57:51 by aarribas          #+#    #+#              #
-#    Updated: 2022/07/30 10:18:10 by aarribas         ###   ########.fr        #
+#    Updated: 2022/08/02 09:19:15 by aarribas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #main
-PUSH_SWAP		=	push_swap
-NAME			=	$(PUSH_SWAP) $(CHECKER)
+NAME			=	push_swap
 CC				= 	gcc $(FLAGS)
 FLAGS			=	-Wall -Werror -Wextra -g
 RM				=	rm -rf
