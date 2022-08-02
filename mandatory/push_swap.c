@@ -6,11 +6,29 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:32:10 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/29 10:28:35 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/08/02 00:35:04 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+char	*ft_strdup_char(const char *str, char stop)
+{
+	int		i;
+	char	*pt;
+
+	i = 0;
+	while (str[i] && str[i] != stop)
+		i++;
+	pt = malloc((i + 1) * sizeof(char));
+	if (!(pt))
+		return (0);
+	i = -1;
+	while (str[++i] && str[i] != stop)
+		pt[i] = str[i];
+	pt[i] = '\0';
+	return (pt);
+}
 
 int	check_sorted_nb(t_stack *stack_a)
 {

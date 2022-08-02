@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 22:50:32 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/29 19:18:29 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/08/02 00:31:52 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ int	ft_atoi(const char *str, int *nb)
 	nbr = 0;
 	if (str[i] == '-')
 	{
-		if (str[i] == '-')
-			signo *= -1;
+		signo *= -1;
 		i++;
 	}
 	if (str[i] == '+' || str[i] == '-' || str[i] == '\0')

@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:32:06 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/29 16:47:34 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/08/01 23:41:08 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_program
 }			t_program;
 
 /* stacks_fill.c */
-
+char		*ft_strdup_char(const char *str, char stop);
 int			check_duplicate(t_stack *stack_a, int nb);
 int			fill_stack(char *ptr_av, t_stack *stack_a, size_t *stack_nb);
 int			process_arg(int ac, char *av[], t_stack *stack_a);

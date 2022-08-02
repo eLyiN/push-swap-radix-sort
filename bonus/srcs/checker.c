@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 12:53:26 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/30 09:56:24 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/08/02 09:14:58 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	evalue_arg(int ac, char *av[], t_stack *stack_a)
 	while (i < (size_t)ac)
 	{
 		ptr = av[i];
+		if (ptr[0] == '\0')
+			return (1);
 		if (fill_stack_arg(ptr, stack_a, &j))
 			return (1);
 		i++;
@@ -87,17 +89,19 @@ int	stacks_fill(int ac, char *av[], t_global *main)
 	main->stack_b.size = 0;
 	main->stack_a.array = malloc(sizeof(int) * stack_size);
 	if (!main->stack_a.array)
-		return (1);
+		return (write(STDERR_FILENO, "Error\n", 6));
 	main->stack_b.array = malloc(sizeof(int) * stack_size);
 	if (!main->stack_b.array)
 	{
 		free(main->stack_a.array);
+		write(STDERR_FILENO, "Error\n", 6);
 		return (1);
 	}
 	if (evalue_arg(ac, av, &main->stack_a))
 	{
 		free(main->stack_a.array);
 		free(main->stack_b.array);
+		write(STDERR_FILENO, "Error\n", 6);
 		return (1);
 	}
 	return (0);

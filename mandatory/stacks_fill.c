@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:12:02 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/30 00:59:40 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/08/02 09:13:56 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,6 @@ int	check_duplicate(t_stack *stack_a, int nb)
 	return (0);
 }
 
-char	*ft_strdup_char(const char *str, char stop)
-{
-	int		i;
-	char	*pt;
-
-	i = 0;
-	while (str[i] && str[i] != stop)
-		i++;
-	pt = malloc((i + 1) * sizeof(char));
-	if (!(pt))
-		return (0);
-	i = -1;
-	while (str[++i] && str[i] != stop)
-		pt[i] = str[i];
-	pt[i] = '\0';
-	return (pt);
-}
-
 int	fill_stack_arg(char *ptr, t_stack *stack_a, size_t *stack_nb)
 {
 	int		nb;
@@ -54,7 +36,7 @@ int	fill_stack_arg(char *ptr, t_stack *stack_a, size_t *stack_nb)
 		while (*ptr && *ptr == ' ')
 			ptr++;
 		if (!*ptr)
-			break ;
+			return (1);
 		str = ft_strdup_char(ptr, ' ');
 		if (ft_atoi(str, &nb))
 		{
@@ -83,6 +65,8 @@ int	process_arg(int ac, char *av[], t_stack *stack_a)
 	while (i < (size_t)ac)
 	{
 		ptr = av[i];
+		if (ptr[0] == '\0')
+			return (1);
 		if (fill_stack_arg(ptr, stack_a, &j))
 			return (1);
 		i++;
