@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 23:47:11 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/29 10:01:13 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:54:08 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,31 @@
 int	find_smallest_nb(t_stack *stack)
 {
 	size_t	i;
-	size_t	j;
-	size_t	size;
+	int		min;
 
-	size = stack->size;
 	i = 0;
-	while (i < size)
+	min = stack->array[i];
+	while (i < stack->max_size)
 	{
-		j = 0;
-		while (stack->array[i] <= stack->array[j] && j < size)
-			j++;
-		if (j == size)
-			return (stack->array[i]);
+		if (stack->array[i] < min)
+			min = stack->array[i];
 		i++;
 	}
-	return (0);
+	return (min);
 }
 
 int	find_highest_nb(t_stack *stack)
 {
 	size_t	i;
-	size_t	j;
-	size_t	size;
+	int		max;
 
-	size = stack->size;
 	i = 0;
-	while (i < size)
+	max = stack->array[0];
+	while (i < stack->max_size)
 	{
-		j = 0;
-		while (stack->array[i] >= stack->array[j] && j < size)
-			j++;
-		if (j == size)
-			return (stack->array[i]);
+		if (stack->array[i] > max)
+			max = stack->array[i];
 		i++;
 	}
-	return (0);
+	return (max);
 }

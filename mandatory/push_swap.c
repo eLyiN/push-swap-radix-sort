@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:32:10 by aarribas          #+#    #+#             */
-/*   Updated: 2022/08/02 00:35:04 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:38:44 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	check_sorted_nb(t_stack *stack_a)
 		if (stack_a->array[i] < stack_a->array[i + 1])
 			i++;
 		else
-			return (1);
+			return (EXIT_FAILURE);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	main(int ac, char **av)

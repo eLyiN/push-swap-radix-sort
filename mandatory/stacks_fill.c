@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:12:02 by aarribas          #+#    #+#             */
-/*   Updated: 2022/08/02 09:13:56 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:54:36 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ int	fill_stack_arg(char *ptr, t_stack *stack_a, size_t *stack_nb)
 		if (ft_atoi(str, &nb))
 		{
 			free(str);
-			return (1);
+			return (EXIT_FAILURE);
 		}
 		free(str);
 		if (check_duplicate(stack_a, nb))
-			return (1);
+			return (EXIT_FAILURE);
 		stack_a->array[(*stack_nb)++] = nb;
 		stack_a->size++;
 		while (*ptr && *ptr != ' ')
 			ptr++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	process_arg(int ac, char *av[], t_stack *stack_a)
@@ -113,14 +113,14 @@ int	stacks_fill(int ac, char *av[], t_stack *stack_a, t_stack *stack_b)
 	{
 		free(stack_a->array);
 		write(STDERR_FILENO, "Error\n", 6);
-		return (1);
+		return (EXIT_FAILURE);
 	}
 	if (process_arg(ac, av, stack_a))
 	{
 		free(stack_a->array);
 		free(stack_b->array);
 		write(STDERR_FILENO, "Error\n", 6);
-		return (1);
+		return (EXIT_FAILURE);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
