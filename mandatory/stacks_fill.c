@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:12:02 by aarribas          #+#    #+#             */
-/*   Updated: 2022/10/17 16:54:36 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/10/17 17:20:40 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	check_duplicate(t_stack *stack_a, int nb)
 	while (stack_a->size > (size_t)i)
 	{
 		if (stack_a->array[i] == nb)
-			return (1);
+			return (EXIT_FAILURE);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	fill_stack_arg(char *ptr, t_stack *stack_a, size_t *stack_nb)
@@ -36,7 +36,7 @@ int	fill_stack_arg(char *ptr, t_stack *stack_a, size_t *stack_nb)
 		while (*ptr && *ptr == ' ')
 			ptr++;
 		if (!*ptr)
-			return (1);
+			return (EXIT_FAILURE);
 		str = ft_strdup_char(ptr, ' ');
 		if (ft_atoi(str, &nb))
 		{
@@ -66,12 +66,12 @@ int	process_arg(int ac, char *av[], t_stack *stack_a)
 	{
 		ptr = av[i];
 		if (ptr[0] == '\0')
-			return (1);
+			return (EXIT_FAILURE);
 		if (fill_stack_arg(ptr, stack_a, &j))
-			return (1);
+			return (EXIT_FAILURE);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 size_t	stack_counter(int ac, char *av[])

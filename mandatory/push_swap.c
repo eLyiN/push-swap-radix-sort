@@ -6,7 +6,7 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:32:10 by aarribas          #+#    #+#             */
-/*   Updated: 2022/10/17 15:38:44 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/10/17 17:22:34 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strdup_char(const char *str, char stop)
 		i++;
 	pt = malloc((i + 1) * sizeof(char));
 	if (!(pt))
-		return (0);
+		return (EXIT_FAILURE);
 	i = -1;
 	while (str[++i] && str[i] != stop)
 		pt[i] = str[i];
