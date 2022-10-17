@@ -6,35 +6,30 @@
 /*   By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 17:10:23 by aarribas          #+#    #+#             */
-/*   Updated: 2022/07/29 10:29:00 by aarribas         ###   ########.fr       */
+/*   Updated: 2022/10/17 17:01:19 by aarribas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	sort_three_nb(t_stack *stack_a)
+int	sort_three_nb(t_stack *stk)
 {
-	if (stack_a->array[0] > stack_a->array[1]
-		&& stack_a->array[0] < stack_a->array[2])
-		swap_sa(stack_a);
-	else if (stack_a->array[0] > stack_a->array[1]
-			&& stack_a->array[1] > stack_a->array[2])
+	if (stk->array[0] > stk->array[1] && stk->array[0] < stk->array[2])
+		swap_sa(stk);
+	else if (stk->array[0] > stk->array[1] && stk->array[1] > stk->array[2])
 	{
-		swap_sa(stack_a);
-		swap_rra(stack_a);
+		swap_sa(stk);
+		swap_rra(stk);
 	}
-	else if (stack_a->array[0] > stack_a->array[1]
-			&& stack_a->array[1] < stack_a->array[2])
-		swap_ra(stack_a);
-	else if (stack_a->array[0] < stack_a->array[1]
-			&& stack_a->array[0] < stack_a->array[2])
+	else if (stk->array[0] > stk->array[1] && stk->array[1] < stk->array[2])
+		swap_ra(stk);
+	else if (stk->array[0] < stk->array[1] && stk->array[0] < stk->array[2])
 	{
-		swap_sa(stack_a);
-		swap_ra(stack_a);
+		swap_sa(stk);
+		swap_ra(stk);
 	}
-	else if (stack_a->array[0] < stack_a->array[1]
-			&& stack_a->array[0] > stack_a->array[2])
-		swap_rra(stack_a);
+	else if (stk->array[0] < stk->array[1] && stk->array[0] > stk->array[2])
+		swap_rra(stk);
 	return (0);
 }
 

@@ -6,14 +6,14 @@
 #    By: aarribas <aarribas@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 15:57:51 by aarribas          #+#    #+#              #
-#    Updated: 2022/10/17 16:36:42 by aarribas         ###   ########.fr        #
+#    Updated: 2022/10/17 16:59:42 by aarribas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #main
 NAME			=	push_swap
 CC				= 	gcc $(FLAGS)
-FLAGS			=	-Wall -Werror -Wextra -g -fsanitize=address
+FLAGS			=	-Wall -Werror -Wextra #-g -fsanitize=address
 RM				=	rm -rf
 OBJS			=	$(PUSH_SWAP_SRC:.c=.o)
 
